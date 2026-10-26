@@ -1,0 +1,3 @@
+{"type":"user","uuid":"p1","timestamp":"2026-10-01T10:00:00.000Z","cwd":"/tmp/demo","message":{"role":"user","content":"Fix the login bug on a separate branch."}}
+{"type":"assistant","uuid":"a1","timestamp":"2026-10-01T10:00:05.000Z","cwd":"/tmp/demo","message":{"role":"assistant","model":"claude-opus-5-5","content":[{"type":"text","text":"Tier: brief | Why: one bug, one module."}]}}
+{"type":"assistant","uuid":"a2","timestamp":"2026-10-01T10:00:10.000Z","cwd":"/tmp/demo","message":{"role":"assistant","model":"claude-opus-5-5","content":[{"type":"tool_use","id":"t1","name":"Bash","input":{"command":"git worktree add -b fix-login ../demo-fix main"}}]}}

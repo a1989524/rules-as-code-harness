@@ -1,0 +1,4 @@
+.state/
+.codex-temp/
+dist/
+node_modules/

@@ -1,0 +1,373 @@
+{
+  "schema": "rules_as_code_config_v1",
+  "backupRoot": "~/.agents/backups",
+  "targets": [
+    {
+      "id": "claude",
+      "path": "~/.claude/CLAUDE.md",
+      "mode": "import",
+      "parts": [
+        "core.md",
+        "profiles/claude-code.md",
+        "INDEX.md",
+        "rules/completion-claims.md",
+        "rules/trust-and-secrets.md",
+        "rules/change-integrity.md",
+        "rules/research.md",
+        "rules/source-grading.md",
+        "rules/reuse-first.md"
+      ]
+    },
+    {
+      "id": "claude-agents",
+      "path": "~/.claude/agents",
+      "mode": "dir",
+      "source": "agents/claude/*.md"
+    },
+    {
+      "id": "codex",
+      "path": "~/.codex/AGENTS.md",
+      "mode": "copy",
+      "parts": [
+        "core.md",
+        "profiles/codex.md",
+        "INDEX.md",
+        "rules/completion-claims.md",
+        "rules/trust-and-secrets.md",
+        "rules/change-integrity.md",
+        "rules/research.md",
+        "rules/source-grading.md",
+        "rules/reuse-first.md"
+      ],
+      "maxBytes": 81920
+    },
+    {
+      "id": "codex-agents",
+      "path": "~/.codex/agents",
+      "mode": "dir",
+      "source": "agents/codex/*.toml"
+    },
+    {
+      "id": "cursor",
+      "path": "dist/cursor-user-rules.md",
+      "mode": "copy",
+      "parts": [
+        "core.md"
+      ],
+      "local": true
+    },
+    {
+      "id": "gemini",
+      "path": "~/.gemini/GEMINI.md",
+      "mode": "copy",
+      "parts": [
+        "core.md"
+      ],
+      "frontmatter": "---\ntrigger:always_on\nalwaysApply: true\n---"
+    },
+    {
+      "id": "copilot",
+      "path": "~/.copilot/copilot-instructions.md",
+      "mode": "copy",
+      "parts": [
+        "core.md"
+      ]
+    }
+  ],
+  "hooks": {
+    "mode": "warn",
+    "enforce": {
+      "bannedTool": "enforce",
+      "sceneRuleGate": "enforce",
+      "reuseGate": "enforce",
+      "dangerousCommands": "enforce",
+      "bashSensitiveRead": "enforce",
+      "secretEgress": "enforce",
+      "stopClosing": "off",
+      "stopSourceLabels": "enforce",
+      "promptContext": "enforce",
+      "effortContext": "enforce",
+      "skillScriptGate": "enforce",
+      "stopStaleVerification": "enforce",
+      "stopIndependentReview": "warn",
+      "analysisReminder": "enforce",
+      "analysisGate": "warn",
+      "analysisLog": "warn",
+      "readWhitelist": "enforce",
+      "readWhitelistShell": "warn"
+    },
+    "readAllow": {
+      "roots": [
+        "~/code",
+        "~/.agents/prompts",
+        "~/.claude/plans"
+      ],
+      "sessionRoots": [
+        "{tmp}/claude",
+        "~/.claude/projects"
+      ],
+      "skillRoots": [
+        "~/.claude/skills",
+        "~/.claude/plugins",
+        "~/.codex/skills",
+        "~/.agents/skills"
+      ],
+      "memoryRoots": [
+        "~/.claude/projects"
+      ]
+    },
+    "mustRules": [
+      "INDEX.md",
+      "rules/completion-claims.md",
+      "rules/trust-and-secrets.md",
+      "rules/change-integrity.md",
+      "rules/research.md",
+      "rules/source-grading.md",
+      "rules/reuse-first.md"
+    ],
+    "fastDomainKeywords": [
+      "AI",
+      "LLM",
+      "GPT",
+      "OpenAI",
+      "Anthropic",
+      "Claude",
+      "Gemini",
+      "DeepSeek",
+      "Qwen",
+      "Llama",
+      "Codex",
+      "Copilot",
+      "Cursor",
+      "agent",
+      "agents",
+      "model",
+      "models",
+      "harness engineering",
+      "loop engineering",
+      "context engineering",
+      "prompt engineering",
+      "prompts",
+      "vibe coding",
+      "MCP",
+      "agent skills",
+      "RAG",
+      "benchmark",
+      "React",
+      "Next.js",
+      "frontend framework",
+      "cloud pricing",
+      "pricing",
+      "vulnerability",
+      "CVE",
+      "大模型",
+      "模型",
+      "提示词",
+      "智能体",
+      "漏洞"
+    ],
+    "reusePromptKeywords": [
+      "new project",
+      "new feature",
+      "build a",
+      "build me",
+      "write a tool",
+      "set up a",
+      "plan",
+      "proposal",
+      "新项目",
+      "新功能",
+      "做一个",
+      "计划"
+    ],
+    "implementPromptKeywords": [
+      "build",
+      "implement",
+      "fix",
+      "refactor",
+      "add a",
+      "add an",
+      "create a",
+      "make a",
+      "change",
+      "rename",
+      "replace",
+      "deploy",
+      "redesign",
+      "migrate",
+      "set up",
+      "wire up",
+      "做一个",
+      "实现",
+      "修复",
+      "修改",
+      "改成",
+      "重构"
+    ],
+    "skipAnalysisKeywords": [
+      "just do it",
+      "no analysis",
+      "skip the analysis",
+      "go ahead",
+      "as planned",
+      "follow the plan",
+      "per the plan",
+      "finish the rest",
+      "continue",
+      "直接做",
+      "按计划",
+      "继续"
+    ],
+    "analysisOnlyKeywords": [
+      "don't change",
+      "do not change",
+      "no changes yet",
+      "suggestions only",
+      "just advise",
+      "analyze first",
+      "analyse first",
+      "read-only analysis",
+      "write a plan",
+      "draft a plan",
+      "implementation plan",
+      "revise the plan",
+      "先不要改",
+      "先分析",
+      "写一个计划"
+    ],
+    "reworkPromptKeywords": [
+      "that is wrong",
+      "that's wrong",
+      "not what i meant",
+      "not what i asked",
+      "you misunderstood",
+      "wrong again",
+      "mixed up",
+      "not what i wanted",
+      "改错了",
+      "不是这个意思",
+      "理解错了"
+    ],
+    "planPathPatterns": [
+      "(^|/)docs/plan\\.md$",
+      "(^|/)docs/plans/[^/]+\\.md$",
+      "(^|/)plans/[^/]+\\.md$"
+    ],
+    "projectInitFiles": [
+      "package.json",
+      "pyproject.toml",
+      "Cargo.toml",
+      "go.mod"
+    ],
+    "reuseSearchPattern": "^WebSearch\\b|^WebFetch .*github\\.com|\\bgh\\s+search\\b|^(?:Grep|Glob) .*(?:(?:[A-Za-z]:(?:[\\\\/]+(?:Users|home)[\\\\/]+[^\\\\/\\s\"']+)?|~|\\$HOME|/(?:home|Users)/[^\\\\/\\s\"']+|/[a-z](?:/(?:Users|home)/[^\\\\/\\s\"']+)?)[\\\\/]+code[\\\\/]*(?=[\"'\\s*]|$)|[\\\\/]\\.?(?:claude|codex|agents)[\\\\/]+skills)|\\b(?:ls|dir|find|fd|rg|grep|Get-ChildItem|gci)\\b[^|;&]*(?:(?:[A-Za-z]:(?:[\\\\/]+(?:Users|home)[\\\\/]+[^\\\\/\\s\"']+)?|~|\\$HOME|/(?:home|Users)/[^\\\\/\\s\"']+|/[a-z](?:/(?:Users|home)/[^\\\\/\\s\"']+)?)[\\\\/]+code[\\\\/]*(?=[\"'\\s*]|$)|[\\\\/]\\.?(?:claude|codex|agents)[\\\\/]+skills)|\\bcd\\s+[\\\\\"']*(?:[A-Za-z]:(?:[\\\\/]+(?:Users|home)[\\\\/]+[^\\\\/\\s\"']+)?|~|\\$HOME|/(?:home|Users)/[^\\\\/\\s\"']+|/[a-z](?:/(?:Users|home)/[^\\\\/\\s\"']+)?)[\\\\/]+code[\\\\/]*[\\\\\"']*\\s*&&[^|;]*\\b(?:ls|dir|find|fd|rg|grep|Get-ChildItem|gci)\\b",
+    "dangerousCommandPatterns": [
+      "\\bgit\\s+reset\\s+--hard\\b",
+      "\\bgit\\s+clean\\s+-[a-z]*f",
+      "\\bgit\\s+push\\b[^\\n]*(\\s--force\\b|\\s-f\\b|\\s--force-with-lease\\b)",
+      "\\bgit\\s+branch\\s+-D\\b",
+      "\\bnpm\\s+publish\\b",
+      "\\bpnpm\\s+publish\\b",
+      "\\bvercel\\b[^\\n]*\\b(deploy|--prod)\\b",
+      "\\bkubectl\\s+(apply|delete)\\b",
+      "\\bterraform\\s+(apply|destroy)\\b",
+      "\\bdocker\\s+push\\b",
+      "\\bgh\\s+release\\s+create\\b"
+    ],
+    "egressCommandPattern": "\\b(curl|wget|Invoke-WebRequest|Invoke-RestMethod|iwr|irm)\\b",
+    "secretVariablePattern": "\\$(\\{)?(env:)?[A-Za-z_]*(TOKEN|SECRET|PASSWORD|API_?KEY|ACCESS_?KEY|PRIVATE_?KEY|COOKIE|AUTH)[A-Za-z_]*",
+    "changedLinesThreshold": 700,
+    "budgetMs": 5000,
+    "maxDirtyFiles": 2000,
+    "defaultLogDir": "update logs",
+    "ruleCoverage": {
+      "hosts": [
+        "claude"
+      ],
+      "maxTranscriptBytes": 20971520,
+      "tailTranscriptBytes": 8388608,
+      "stopTailTranscriptBytes": 67108864,
+      "verifyCommandPattern": "\\b(?:npm|pnpm|yarn|bun)\\s+(?:run\\s+)?(?:test|build|check|lint|typecheck|qa)[\\w:-]*|\\bnode\\s+--test\\b|\\bnode\\s+\\S*(?:test|qa|check|lint)\\S*\\.m?js\\b|\\b(?:pytest|vitest|jest|tsc|eslint|playwright\\s+test|astro\\s+check|cargo\\s+test|go\\s+test)\\b",
+      "reviewLinesThreshold": 500,
+      "skillScriptPattern": "[\\\\/]skills[\\\\/]+([A-Za-z0-9._-]+)[\\\\/]+scripts[\\\\/]",
+      "browserPrefixes": [
+        "mcp__Claude_Browser__",
+        "mcp__playwright__",
+        "mcp__claude-in-chrome__"
+      ],
+      "mcpIgnorePrefixes": [
+        "mcp__ccd_",
+        "mcp__visualize__",
+        "mcp__terminal__"
+      ],
+      "writeTools": [
+        "Write",
+        "Edit",
+        "NotebookEdit"
+      ],
+      "shellTools": [
+        "Bash",
+        "PowerShell"
+      ],
+      "readTools": [
+        "Read",
+        "Grep",
+        "NotebookRead"
+      ],
+      "sensitivePathPattern": "^\\.env(?!\\.(example|sample|template|dist)$)(\\..+)?$|\\.(pem|key|p12|pfx|keystore)$|^id_(rsa|dsa|ecdsa|ed25519)$|^(credentials(\\.json)?|auth\\.json|\\.npmrc|\\.pypirc|\\.git-credentials|\\.netrc|cookies\\.sqlite|storage-?state\\.json)$|^secrets?\\.(json|ya?ml|toml|env)$|\\.dpapi$",
+      "sensitiveFullPathPattern": "(^|/)\\.ssh/|/(default|profile [0-9]+)/(network/)?cookies(-journal)?$",
+      "writeExemptDirs": [
+        "~/.claude/projects"
+      ],
+      "searchTools": [
+        "WebSearch",
+        "WebFetch"
+      ],
+      "readWindowPrompts": 5,
+      "configPathPatterns": [
+        "(^|/)\\.claude/",
+        "(^|/)\\.codex/",
+        "/\\.agents/prompts/",
+        "(^|/)settings(\\.local)?\\.json$",
+        "(^|/)\\.mcp\\.json$",
+        "(^|/)(agents|claude|gemini)\\.md$"
+      ],
+      "memoryPathPattern": "/\\.claude/projects/[^/]+/memory/",
+      "nudgeSkipTools": "^(ToolSearch|AskUserQuestion|TaskStop|ScheduleWakeup|mcp__ccd_.*)$"
+    },
+    "bannedTool": {
+      "name": "Exa",
+      "why": "billed per call",
+      "toolPattern": "(^|_)exa(_|$)",
+      "urlPattern": "(^|[/.])exa\\.ai\\b",
+      "commandPattern": "\\bapi\\.exa\\.ai\\b|\\bexa-mcp\\b|\\bmcp-server-exa\\b|\\bexa-js\\b|\\bexa[_-]py\\b"
+    }
+  },
+  "lint": {
+    "neutralFiles": [
+      "core.md",
+      "INDEX.md",
+      "rules/*.md"
+    ],
+    "deny": [
+      "codex(?!-temp|-evidence)",
+      "claude(?!\\.md)",
+      "cursor(?!/rules)",
+      "windsurf",
+      "kiro",
+      "gemini",
+      "apply_patch",
+      "config\\.toml",
+      "openai-docs",
+      "C:[\\\\/]Users",
+      "%LOCALAPPDATA%",
+      "\\$[a-z]+(?:-[a-z0-9]+)+"
+    ],
+    "allow": {},
+    "budgets": {
+      "core.md": 4000,
+      "rules/*.md": 2600,
+      "onDemandTotal": 24000
+    },
+    "duplicateMinChars": 60
+  }
+}
